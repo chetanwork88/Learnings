@@ -1,0 +1,86 @@
+git init
+git init --bare
+
+git clone https://github.com/chetanwork88/PythonSecurityPipeline.git
+git clone --branch <tag> <repo>
+git clone -depth=1 <repo>
+git fetch <remote>
+git fetch <remote> <branch>
+git fetch --all
+git fetch --dry-run
+
+git status
+
+git log
+git log -1
+git blame readme.MD
+
+git mv a.txt b.txt
+
+git add --a
+git add .
+git add c.txt
+
+git rm --cached c.txt
+git restore --staged c.txt
+
+git commit -m "Commit Message"
+git commit -am "commit message"
+git commit --amend
+
+git stash
+git stash -u == Stash Untracked Files as well
+git stash pop
+git stash apply
+
+git remote add origin https://github.com/chetanwork88/GitLearning.git
+ssh-keygen -t rsa -b 4096 -C "chetanpawar968@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add /c/Users/chetapaw/.ssh/github
+clip < /c/Users/chetapaw/.ssh/github.pub
+git remote -v
+git push -u origin master
+git branch -M main
+git push -u origin main
+git push --force origin main
+git pull origin main
+
+git checkout -b develop
+git switch develop
+git checkout develop
+git push origin develop
+git push origin develop:bugfix
+git rebase main
+git branch -v
+git branch --merged
+git branch --no-merged
+git branch -d ops
+git branch -D ops
+git merge develop
+git reset
+
+git tag -a v1.1 -m "First Version"
+git tag
+git push origin v1.1
+git checkout v1.1
+git tag -d v1.1
+
+git config --list
+git config --global --edit
+git config --global alias.st status 
+git config --global alias.co checkout 
+git config --global alias.br branch 
+git config --global alias.up rebase 
+git config --global alias.ci commit
+git st
+git co
+git config --global user.name "Chetan Pawar"
+git config --global user.email "chetanpawar968@gmail.com"
+
+git archive --format=tar HEAD
+git archive --output=./example_repo_archive.tar --format=tar HEAD
+git archive --output=./example_repo_archive.zip --format=tar HEAD
+git archive --output=./example_repo_archive.tar.gz --format=tar HEAD
+
+
+https://www.atlassian.com/git
