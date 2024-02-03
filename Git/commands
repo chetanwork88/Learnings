@@ -29,7 +29,7 @@ git commit -am "commit message"
 git commit --amend
 
 git stash
-git stash -u == Stash Untracked Files as well
+git stash -u
 git stash pop
 git stash apply
 
