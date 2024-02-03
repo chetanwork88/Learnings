@@ -1,0 +1,26 @@
+docker
+docker ps
+docker ps -a
+docker images
+docker run docker/whalesay cowsay "Hiiiii"
+docker run --env POSTGRESS_PASSWORD=password --publish 5432:5432 postgres:15.1-alpine
+docker rm c14600e5c4b8
+docker rmi fd1d8f58e8ae
+docker run --interactive --tty --rm ubuntu:22.04
+docker run --it --rm ubuntu:22.04
+docker run --interactive --tty --name FirstContainer ubuntu:22.04
+docker start FirstContainer
+docker start c14600e5c4b8
+docker attach FirstContainer
+docker stop c14600e5c4b8
+docker restart c14600e5c4b8
+docker build --tag my-ubuntu-ping-img -<<EOF
+  FROM ubuntu:22.04
+  RUN apt update && apt install iputils-ping --yes
+  EOF
+docker volume create my-volume
+docker volume ls
+docker volume rm my-volume
+docker run -it --rm --mount source=my-volume,destination=//my-data/ ubuntu:22.04
+docker run -it --rm --mount type=bind,source="${PWD}"/my-data,destination=//my-data/ ubuntu:22.04
+docker build .
