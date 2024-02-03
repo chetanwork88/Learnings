@@ -67,13 +67,8 @@ git tag -d v1.1
 
 git config --list
 git config --global --edit
-git config --global alias.st status 
-git config --global alias.co checkout 
-git config --global alias.br branch 
-git config --global alias.up rebase 
-git config --global alias.ci commit
+git config --global alias.st status
 git st
-git co
 git config --global user.name "Chetan Pawar"
 git config --global user.email "chetanpawar968@gmail.com"
 
