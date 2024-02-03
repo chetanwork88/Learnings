@@ -1,0 +1,41 @@
+Definition:
+    Docker container is lightweight, standalone, executable package of software includes everything needed to run the application.
+    Docker Engine = Docker CLI (client) + Docker API & Docker Daemon (server) | Open Source
+
+Virtual Machines vs Container:
+        App #1              App #2 
+        Bin/Lib             Bin/Lib 
+        OS                  OS                           App #1             App #2
+    Virtual Hardware    Virtual Hardware                   Bin/Lib            Bin/Lib   
+        VM #1               VM #2                       Container #1        Container #2
+    -------------- HyperVisor ---------------       ----------- Container Runtime -----------
+    ----------------- OS --------------------       ----------------- OS --------------------
+    ----------- Physical Hardware -----------       ----------- Physical Hardware -----------           
+
+Docker/Linux Building Blocks:
+    Namespaces:
+        Isolate host system resources from container resources
+        Ex - Pid Namespace: Pid running in host are not visible inside the container.
+        Ex - User Namespace: Same user can have different previleges in container and in host.
+    Control Groups(cgroups):
+        Organize processes in groups then limit and monitor access to certain resources.
+        Ex - Limit on utilization on cpu, memory, devices and pids (30% of CPU, 50MB of memory)
+    Union Filesystem:
+        docker uses overlayfs
+        combines different layers having different files and can be seen together in a single file system.
+        contains 3 layers - Overlay, Upper, Lower
+        Lower layer contains some shared files that will be used/commann in multiple docker images to lower the data transfer.
+        Upper layer takes the precendence when same/modifies file is present in in Lower and Upper layer.
+        Ex - When the new docker image is generated, File-2b will overide File-2a and will not contain File-4.
+            Overlay     File-1        File-2b     File-3
+                          |             |           | 
+            Upper         |           File-2b     File-3      File-4 Deleted
+            Lower       File-1        File-2a                 File-4
+
+Volumes:
+    Volume Mount:
+        Stores data in docker container
+        Faster performance
+    Bind Mount:
+        Stores data in host
+        Lower performance
