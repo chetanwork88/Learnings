@@ -6,17 +6,17 @@ echo "Start Time : $(date)"
 MASTER_FILE=orig.csv
 
 # No Of Files in which the Original files will be split into
-SPLIT_FILE_COUNT=5
+SPLIT_FILE_COUNT=4
 
 # Split File Names
-SPLIT_FILE_NAME_ARR=("split_11.csv" "split_12.csv" "split_13.csv" "split_14.csv" "split_15.csv")
+SPLIT_FILE_NAME_ARR=("split_11.csv" "split_12.csv" "split_13.csv" "split_14.csv")
 
 # Port to Add
-PORT_NO_ARR=(9091 9092 9093 9094 9095)
+PORT_NO_ARR=(9091 9092 9093 9094)
 
 # CUST_ID_START and END Range
 CUST_ID_START=1
-CUST_ID_END=100
+CUST_ID_END=103
 
 OUTPUT=output
 mkdir -p "$OUTPUT"
@@ -82,8 +82,25 @@ SplitFiles()
     SPLIT_CNT_REC=$((TOT_REC_CNT/SPLIT_FILE_COUNT))
     echo "    No Of records per Split File : $SPLIT_CNT_REC"
 
+    SPLIT_CNT_REC_MOD=$((TOT_REC_CNT % SPLIT_FILE_COUNT))
+    echo "    No Of Extra records in Last File : $SPLIT_CNT_REC_MOD"
+
     #Split the file
     split -l "$SPLIT_CNT_REC" "$PORT_APPND_FL_NAME" $TMP_SPLIT_FL_NAME
+
+    if [ $SPLIT_CNT_REC_MOD -gt 0 ]
+    then
+        EXTRA_FILE=`ls -1r ${TMP_SPLIT_FL_NAME}* | head -1`
+        echo "Extra File : $EXTRA_FILE"
+
+        #LAST_FILE=`ls -1r ${TMP_SPLIT_FL_NAME}* | head -1`
+        LAST_FILE=`ls -1r | sed -n '2p'`
+        echo "Last File : $LAST_FILE"
+
+        cat $EXTRA_FILE >> $LAST_FILE
+
+        rm -f $EXTRA_FILE
+    fi
 }
 
 RenameSplitFiles()
