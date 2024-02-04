@@ -16,9 +16,9 @@ PORT_NO_ARR=(9091 9092 9093 9094 9095)
 
 # CUST_ID_START and END Range
 CUST_ID_START=1
-CUST_ID_END=10
+CUST_ID_END=100
 
-OUTPUT=output/
+OUTPUT=output
 mkdir -p "$OUTPUT"
 
 #Validate User Input
@@ -94,7 +94,6 @@ RenameSplitFiles()
     idx=0
     for TEMP_FILE in `ls -1 ${TMP_SPLIT_FL_NAME}*`
     do
-        #SPLIT_FILE_NAME=${MSTR_FILE_BASE_NM}_${idx}.${MSTR_FILE_EXTN}
         SPLIT_FILE_NAME=${SPLIT_FILE_NAME_ARR[$idx]}
         echo "    Split File Name: $SPLIT_FILE_NAME"
         mv $TEMP_FILE $SPLIT_FILE_NAME
@@ -107,6 +106,8 @@ ValidateInput
 
 #Create Master File
 CreateMasterFile
+
+dos2unix $MASTER_FILE
 
 #Append Port No
 AppendPortNo
